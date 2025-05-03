@@ -21,8 +21,15 @@
 		"wrangler": "^4.14.1"
 	},
 	"dependencies": {
+		"@tailwindcss/postcss": "^4.1.5",
+		"@tailwindcss/vite": "^4.1.5",
+		"@vitejs/plugin-react": "^4.4.1",
 		"agents": "^0.0.76",
+		"autoprefixer": "^10.4.21",
 		"hono": "^4.7.8",
-		"hono-agents": "^0.0.66"
+		"hono-agents": "^0.0.66",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"tailwind": "^4.0.0"
 	}
 }

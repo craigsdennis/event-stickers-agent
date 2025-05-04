@@ -27,20 +27,20 @@ export default function Event({ name }: { name: string }) {
     }
   }, [name]);
   return (
-    <div className="min-h-screen bg-white p-8">
-      <header className="max-w-4xl mx-auto mb-8">
-        <h1 className="text-4xl font-bold text-primary">Event: {name}</h1>
+    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white p-8">
+      <header className="max-w-4xl mx-auto mb-8 p-6 bg-primary text-white rounded-lg shadow-md">
+        <h1 className="text-4xl glow uppercase">Event: {name}</h1>
       </header>
       <main className="max-w-4xl mx-auto">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-md border border-primary-light inline-block">
           <button
             onClick={heartEvent}
-            className="text-3xl hover:opacity-80 transition"
+            className="heartbeat glow text-4xl text-primary"
             aria-label="Heart Event"
           >
             🧡
           </button>
-          <span className="text-xl">{heartCount}</span>
+          <span className="text-2xl font-semibold">{heartCount}</span>
         </div>
         <div className="mt-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-2">
@@ -53,11 +53,13 @@ export default function Event({ name }: { name: string }) {
             className="w-40 h-40"
           />
         </div>
-		<ul>
-		{stickers.map((sticker) => (
-			<img key="sticker" src={"/images/" + sticker} />
-		))}
-		</ul>
+        <ul className="mt-8 grid grid-cols-3 gap-4">
+          {stickers.map((sticker) => (
+            <li key={sticker}>
+              <img src={`/images/${sticker}`} alt={sticker} className="w-full h-auto rounded-lg shadow" />
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );

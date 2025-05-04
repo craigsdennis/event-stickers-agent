@@ -43,7 +43,7 @@ export class StickerCreator extends WorkflowEntrypoint<Env, Params> {
 			});
 			// Second is transparent?
 			const transformed = await this.env.IMAGES.input(output[1])
-				.transform({ width: 400 })
+				.transform({ width: 200 })
 				.output({ format: 'image/png' });
 			const stickerFileName = event.payload.photoFileName.replace("attendee/", "sticker/");
 			await this.env.EVENT_STICKERS.put(stickerFileName, transformed.image());

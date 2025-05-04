@@ -56,14 +56,14 @@ export default function Phone({ name }: { name: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-white p-6 flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-primary mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary-light to-white p-6 flex flex-col items-center">
+      <h1 className="text-3xl font-bold text-white mb-4 glow uppercase tracking-widest">
         Join {name} with your phone
       </h1>
       <div className="flex items-center space-x-2 mb-4">
         <button
           onClick={heartEvent}
-          className="text-2xl hover:opacity-80 transition"
+          className="heartbeat glow text-2xl text-primary"
           aria-label="Heart Event"
         >
           🧡
@@ -79,7 +79,7 @@ export default function Phone({ name }: { name: string }) {
       <button
         onClick={capture}
         disabled={loading}
-        className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary-dark transition disabled:opacity-50"
+        className="btn-game bg-primary text-white glow w-full max-w-md tracking-widest disabled:opacity-50"
       >
         {loading ? 'Sending...' : 'Take Photo & Join'}
       </button>

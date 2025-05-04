@@ -1,0 +1,21 @@
+
+> event-stickers@0.0.0 build
+> vite build
+
+vite v6.3.4 building for production...
+transforming...
+✓ 3 modules transformed.
+✗ Build failed in 31ms
+error during build:
+[@tailwindcss/vite:generate:build] Cannot apply unknown utility class: font-pixel
+file: /Users/craig/Code/demos/event-stickers/src/front-end/styles.css
+    at onInvalidCandidate (file:///Users/craig/Code/demos/event-stickers/node_modules/tailwindcss/dist/chunk-NZOSKIBJ.mjs:20:348)
+    at ce (file:///Users/craig/Code/demos/event-stickers/node_modules/tailwindcss/dist/chunk-NZOSKIBJ.mjs:15:29629)
+    at Re (file:///Users/craig/Code/demos/event-stickers/node_modules/tailwindcss/dist/chunk-NZOSKIBJ.mjs:20:311)
+    at Lr (file:///Users/craig/Code/demos/event-stickers/node_modules/tailwindcss/dist/chunk-NZOSKIBJ.mjs:36:784)
+    at async Zi (file:///Users/craig/Code/demos/event-stickers/node_modules/tailwindcss/dist/chunk-NZOSKIBJ.mjs:36:1079)
+    at async el (file:///Users/craig/Code/demos/event-stickers/node_modules/tailwindcss/dist/chunk-NZOSKIBJ.mjs:36:1807)
+    at async ta (file:///Users/craig/Code/demos/event-stickers/node_modules/@tailwindcss/node/dist/index.mjs:12:3355)
+    at async R.generate (file:///Users/craig/Code/demos/event-stickers/node_modules/@tailwindcss/vite/dist/index.mjs:1:3511)
+    at async Object.transform (file:///Users/craig/Code/demos/event-stickers/node_modules/@tailwindcss/vite/dist/index.mjs:1:2313)
+    at async transform (file:///Users/craig/Code/demos/event-stickers/node_modules/rollup/dist/es/shared/node-entry.js:20911:16)

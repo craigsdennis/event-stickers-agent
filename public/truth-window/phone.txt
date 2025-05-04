@@ -1,0 +1,7 @@
+Okay so each page has this /events/EVENT_SLUG style. I'd like to create a
+/event/EVENT_SLUG/phone page that people can get to by adding a QR code on
+the /events/EVENT_SLUG page. That new page does useAgent to connect to the
+same agent and does a call to take a photo using their forward facing
+webcam. They send the photoDataURI of their photo to the Hackathon agent by
+calling the addAttendeePhoto method.
+

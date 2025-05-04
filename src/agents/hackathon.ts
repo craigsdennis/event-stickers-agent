@@ -38,7 +38,7 @@ export class HackathonAgent extends Agent<Env, HackathonState> {
 
 	@callable()
 	async addAttendeePhoto(photoDataUri: string) {
-		const photoResponse = fetch(photoDataUri);
+		const photoResponse = await fetch(photoDataUri);
 		const transformed = await this.env.IMAGES.input(photoResponse.body as ReadableStream)
 			.transform({ width: 400 })
 			.output({ format: 'image/png' });

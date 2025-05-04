@@ -42,17 +42,16 @@ export class HackathonAgent extends Agent<Env, HackathonState> {
 		const transformed = await this.env.IMAGES.input(photoResponse.body as ReadableStream)
 			.transform({ width: 400 })
 			.output({ format: 'image/png' });
-		// If GitHub use that
-		const screenshotFileName = `attendee/${crypto.randomUUID()}.png`;
-		// TODO: Bucket
+		const photoKey = crypto.randomUUID();
+		const screenshotFileName = `attendee/${photoKey}.png`;
 		await this.env.EVENT_STICKERS.put(screenshotFileName, transformed.image());
 		await this.env.STICKER_CREATOR.create({
 			params: {
 				agentName: this.name,
 				photoFileName: screenshotFileName
 			}
-		})
-
+		});
+		return photoKey;
 	}
 
 	// addPhoto

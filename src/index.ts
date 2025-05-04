@@ -11,14 +11,15 @@ app.get('/hello', async (c) => {
 	return c.json({ hello: 'world' });
 });
 
-app.get("/images/sticker/:id", async(c) => {
+app.get("/images/:photoType/:id", async(c) => {
 	const id = c.req.param("id");
-	const stickerImage = await c.env.EVENT_STICKERS.get(`sticker/${id}`);
-	if (stickerImage === null) {
+	const photoType = c.req.param("photoType");
+	const image = await c.env.EVENT_STICKERS.get(`${photoType}/${id}`);
+	if (image === null) {
 		return c.notFound();
 	}
 	// TODO: Right? Might return http metadata!
-	return c.body(stickerImage.body);
+	return c.body(image.body);
 })
 
 app.use('*', agentsMiddleware());

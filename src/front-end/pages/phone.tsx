@@ -1,18 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAgent } from 'agents/react';
+import type {HackathonState} from "../../agents/hackathon";
 
 export default function Phone({ name }: { name: string }) {
   const [heartCount, setHeartCount] = useState(0);
   const agent = useAgent({
     agent: 'hackathon-agent',
     name,
-    onStateUpdate: (state) => {
+    onStateUpdate: (state: HackathonState) => {
       setHeartCount(state.heartCount);
     },
   });
   const videoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [photoKey, setPhotoKey] = useState<string | null>(null);
+  const [photoDataUri, setPhotoDataUri] = useState<string | null>(null);
 
   useEffect(() => {
     navigator.mediaDevices
@@ -41,10 +44,16 @@ export default function Phone({ name }: { name: string }) {
     }
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     const dataUri = canvas.toDataURL('image/png');
+    setPhotoDataUri(dataUri);
     setLoading(true);
     try {
-      await agent.call('addAttendeePhoto', [dataUri]);
-      alert('Photo sent!');
+      const key = await agent.call('addAttendeePhoto', [dataUri]);
+      setPhotoKey(key as string);
+      // stop camera
+      if (video.srcObject instanceof MediaStream) {
+        (video.srcObject as MediaStream).getTracks().forEach(track => track.stop());
+        video.srcObject = null;
+      }
     } catch (e: any) {
       setError('Error sending photo: ' + e.message);
     } finally {
@@ -71,18 +80,31 @@ export default function Phone({ name }: { name: string }) {
         <span className="text-xl">{heartCount}</span>
       </div>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <video
-        ref={videoRef}
-        className="w-full max-w-md rounded shadow mb-4"
-        playsInline
-      />
-      <button
-        onClick={capture}
-        disabled={loading}
-        className="btn-game bg-primary text-white glow w-full max-w-md tracking-widest disabled:opacity-50"
-      >
-        {loading ? 'Sending...' : 'Take Photo & Join'}
-      </button>
+      {!photoKey ? (
+        <>
+          <video
+            ref={videoRef}
+            className="w-full max-w-md rounded shadow mb-4"
+            playsInline
+          />
+          <button
+            onClick={capture}
+            disabled={loading}
+            className="btn-game bg-primary text-white glow w-full max-w-md tracking-widest disabled:opacity-50"
+          >
+            {loading ? 'Sending...' : 'Take Photo & Join'}
+          </button>
+        </>
+      ) : (
+        <div className="flex flex-col items-center mb-4">
+          <img
+            src={photoDataUri || `/images/attendee/${photoKey}`}
+            alt="Uploaded photo"
+            className="w-full max-w-md rounded shadow mb-4"
+          />
+          <p className="text-center text-gray-700">Photo uploaded! Waiting for sticker...</p>
+        </div>
+      )}
     </div>
   );
 }

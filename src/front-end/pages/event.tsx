@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAgent } from 'agents/react';
 import QRious from 'qrious';
 import type { HackathonState } from '../../agents/hackathon';
+import Footer from '../components/Footer';
 export default function Event({ name }: { name: string }) {
   const [heartCount, setHeartCount] = useState(0);
   const [stickers, setStickers] = useState<string[]>([]);
@@ -113,6 +114,8 @@ export default function Event({ name }: { name: string }) {
           />
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAgent } from 'agents/react';
 import type {HackathonState} from "../../agents/hackathon";
+import Footer from '../components/Footer';
 
 export default function Phone({ name }: { name: string }) {
   const [heartCount, setHeartCount] = useState(0);
@@ -120,6 +121,8 @@ export default function Phone({ name }: { name: string }) {
           <p className="text-center text-gray-700">Photo uploaded! Waiting for sticker...</p>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }

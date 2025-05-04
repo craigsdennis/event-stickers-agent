@@ -23,10 +23,17 @@
   .btn-game {
     /* Retro pixel font */
     font-family: 'Press Start 2P', monospace;
-    @apply text-primary uppercase border-2 border-primary px-4 py-2 transition-colors duration-200;
+    /* apply common utilities */
+    @apply uppercase border-2 px-4 py-2 transition-colors duration-200;
+    /* apply primary color using theme() helper */
+    color: theme('colors.primary');
+    border-color: theme('colors.primary');
   }
   .btn-game:hover {
-    @apply bg-primary text-white glow;
+    /* apply hover text and glow */
+    @apply text-white glow;
+    /* apply hover background color from theme */
+    background-color: theme('colors.primary');
   }
   /* Heartbeat animation */
   @keyframes beat {

@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     'index.html',
-    'src/**/*.{js,ts,jsx,tsx,css}'
+    'src/**/*.{js,ts,jsx,tsx,css}',
   ],
   theme: {
     extend: {
@@ -10,13 +10,13 @@ export default {
         primary: {
           DEFAULT: '#F38020',
           dark: '#DC7816',
-          light: '#FFAC42'
-        }
+          light: '#FFAC42',
+        },
       },
       fontFamily: {
         pixel: ['"Press Start 2P"', 'monospace'],
       },
-    }
+    },
   },
   plugins: [],
 };

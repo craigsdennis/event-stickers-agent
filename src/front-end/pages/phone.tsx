@@ -4,11 +4,13 @@ import type {HackathonState} from "../../agents/hackathon";
 
 export default function Phone({ name }: { name: string }) {
   const [heartCount, setHeartCount] = useState(0);
+  const [stickers, setStickers] = useState<string[]>([]);
   const agent = useAgent({
     agent: 'hackathon-agent',
     name,
     onStateUpdate: (state: HackathonState) => {
       setHeartCount(state.heartCount);
+      setStickers(state.stickers);
     },
   });
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -63,12 +65,16 @@ export default function Phone({ name }: { name: string }) {
   const heartEvent = async () => {
     await agent.call('heartEvent');
   };
+  const stickerFileName = photoKey ? `sticker/${photoKey}.png` : null;
+  const hasSticker = stickerFileName ? stickers.includes(stickerFileName) : false;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-light to-white p-6 flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-white mb-4 glow uppercase tracking-widest">
-        Join {name} with your phone
-      </h1>
+      <header className="max-w-4xl w-full mb-4 p-6 bg-[var(--color-primary)] text-white rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold glow uppercase tracking-widest text-center">
+          Join {name} with your phone
+        </h1>
+      </header>
       <div className="flex items-center space-x-2 mb-4">
         <button
           onClick={heartEvent}
@@ -95,6 +101,15 @@ export default function Phone({ name }: { name: string }) {
             {loading ? 'Sending...' : 'Take Photo & Join'}
           </button>
         </>
+      ) : hasSticker && stickerFileName ? (
+        <div className="flex flex-col items-center mb-4">
+          <img
+            src={`/images/${stickerFileName}`}
+            alt="Your sticker"
+            className="w-full max-w-md rounded shadow mb-4"
+          />
+          <p className="text-center text-gray-700">Here's your sticker!</p>
+        </div>
       ) : (
         <div className="flex flex-col items-center mb-4">
           <img

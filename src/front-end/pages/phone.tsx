@@ -73,7 +73,7 @@ export default function Phone({ name }: { name: string }) {
     <div className="min-h-screen bg-gradient-to-br from-primary-light to-white p-6 flex flex-col items-center">
       <header className="max-w-4xl w-full mb-4 p-6 bg-[var(--color-primary)] text-white rounded-lg shadow-md">
         <h1 className="text-3xl font-bold glow uppercase tracking-widest text-center">
-          Join {name} with your phone
+				👋 Smile! You're at {name}
         </h1>
       </header>
       <div className="flex items-center space-x-2 mb-4">
@@ -99,7 +99,7 @@ export default function Phone({ name }: { name: string }) {
             disabled={loading}
             className="btn-game bg-primary text-white glow w-full max-w-md tracking-widest disabled:opacity-50"
           >
-            {loading ? 'Sending...' : 'Take Photo & Join'}
+            {loading ? 'Sending...' : 'Take Photo'}
           </button>
         </>
       ) : hasSticker && stickerFileName ? (

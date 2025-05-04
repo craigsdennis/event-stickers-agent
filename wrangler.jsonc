@@ -10,6 +10,7 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	"images": {"binding": "IMAGES"},
 	"assets": {
 		"binding": "ASSETS",
 		"directory": "./public",
@@ -31,7 +32,14 @@
 		"binding": "STICKER_CREATOR",
 		"class_name": "StickerCreator",
 		"name": "StickerCreator"
-	}]
+	}],
+
+	"r2_buckets": [
+		{
+		  "bucket_name": "event-stickers",
+		  "binding": "EVENT_STICKERS"
+		}
+	  ]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

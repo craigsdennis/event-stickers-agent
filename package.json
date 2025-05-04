@@ -31,6 +31,7 @@
 		"hono-agents": "^0.0.66",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
+		"replicate": "^1.0.1",
 		"tailwind": "^4.0.0"
 	}
 }

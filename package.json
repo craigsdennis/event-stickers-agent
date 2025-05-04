@@ -15,6 +15,7 @@
 		"@cloudflare/vite-plugin": "^1.1.0",
 		"@cloudflare/vitest-pool-workers": "^0.8.19",
 		"@cloudflare/workers-types": "^4.20250503.0",
+		"@types/react": "^19.1.2",
 		"typescript": "^5.5.2",
 		"vite": "^6.3.4",
 		"vitest": "~3.0.7",

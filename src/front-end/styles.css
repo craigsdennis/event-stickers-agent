@@ -1,46 +1,50 @@
 /* Import retro pixel font: MUST come before all other statements */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Tailwind v4 */
+@import "tailwindcss";
 
-/* Base layer: apply pixel font globally */
-@layer base {
-  html {
-    font-family: 'Press Start 2P', monospace;
-  }
+/* Define theme custom properties */
+:root {
+  --color-primary: #F38020;
+  --color-primary-dark: #DC7816;
+  --color-primary-light: #FFAC42;
 }
 
-/* Game-like UI components */
-@layer components {
-  /* Neon glow effect */
-  .glow {
-    /* Neon glow using primary colors */
-    box-shadow: 0 0 8px #F38020, 0 0 16px #FFAC42;
-  }
-  /* Game-style button */
-  .btn-game {
-    /* Retro pixel font */
-    font-family: 'Press Start 2P', monospace;
-    /* apply common utilities */
-    @apply uppercase border-2 px-4 py-2 transition-colors duration-200;
-    /* apply primary color using theme() helper */
-    color: theme('colors.primary');
-    border-color: theme('colors.primary');
-  }
-  .btn-game:hover {
-    /* apply hover text and glow */
-    @apply text-white glow;
-    /* apply hover background color from theme */
-    background-color: theme('colors.primary');
-  }
-  /* Heartbeat animation */
-  @keyframes beat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-  }
-  .heartbeat:hover {
-    animation: beat 0.5s ease-in-out;
-  }
+/* Base styles */
+html {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Neon glow effect */
+.glow {
+  box-shadow: 0 0 8px var(--color-primary), 0 0 16px var(--color-primary-light);
+}
+
+/* Game-style button */
+.btn-game {
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  border-width: 2px;
+  padding: 0.5rem 1rem;
+  transition-property: color, background-color, border-color;
+  transition-duration: 200ms;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-game:hover {
+  color: white;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary), 0 0 16px var(--color-primary-light);
+}
+
+/* Heartbeat animation */
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+.heartbeat:hover {
+  animation: beat 0.5s ease-in-out;
 }

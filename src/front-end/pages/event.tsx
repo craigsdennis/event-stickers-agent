@@ -1,6 +1,6 @@
+import React from 'react';
 import { useAgent } from 'agents/react';
 import { useState } from "react";
-
 import type { HackathonState } from '../../agents/hackathon';
 export default function Event({ name }: { name: string }) {
 	const [heartCount, setHeartCount] = useState(0);
@@ -8,7 +8,6 @@ export default function Event({ name }: { name: string }) {
 		agent: 'hackathon-agent',
 		name,
 		onStateUpdate: (state: HackathonState, source) => {
-			console.log(state);
 			setHeartCount(state.heartCount);
 		},
 	});
